@@ -24,16 +24,29 @@ img { max-width: 100%; height: auto; border-radius: 16px; display: block; }
 
 .img { position: relative; }
 
-.message { text-align: center; margin: 8px 0 14px; font-size: clamp(28px, 4.2vw, 48px); line-height: 1.1; }
+.message { text-align: center; 
+    margin: 8px 0 14px;
+     font-size: clamp(28px, 4.2vw, 48px);
+      line-height: 1.1; 
+}
 
-.welcome { text-align: left; max-width: 560px; }
+.welcome { text-align: left; 
+    max-width: 560px;
+ }
 
-.welcome h3 { font-weight: 600; line-height: 1.55; }
+.welcome h3 { font-weight: 600; 
+    line-height: 1.55; 
+}
 
-.stats-section { display: grid; gap: 16px; }
+.stats-section { display: grid; 
+    gap: 16px; 
+}
 
 /* Feature cards grid */
-.features-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.features-grid { display: grid; 
+    grid-template-columns: repeat(3, minmax(0,1fr)); 
+    gap: 12px;
+ }
 .feature-card {
     background: rgba(255,255,255,0.12);
     border: 1px solid rgba(255,255,255,0.35);
@@ -56,7 +69,18 @@ img { max-width: 100%; height: auto; border-radius: 16px; display: block; }
     max-width: 100px;
 }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; background:#fff; color:#0b3b28; font-weight:700; text-align:center; border-radius: 10px; cursor: pointer; width: max-content; width:clamp(10vw,20vw,30vw) }
+.btn { display: inline-flex; 
+    align-items: center;
+     justify-content: center;
+      padding: 12px 18px; 
+      background:#fff; 
+      color:#0b3b28; 
+      font-weight:700; 
+      text-align:center; 
+      border-radius: 10px; 
+      cursor: pointer;
+       width: max-content;
+        width:clamp(10vw,20vw,30vw) }
 
 .btn:hover {
     background-color: rgb(48,146,93);
@@ -65,11 +89,32 @@ img { max-width: 100%; height: auto; border-radius: 16px; display: block; }
 }
 
 
-.footer { width: 100%; display: flex; justify-content: center; align-items: center; background-color: white; font-size: large; height: 5.7vh; color: black; margin-top: auto; }
+.footer { 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: white; 
+    font-size: large;
+     height: 5.7vh; 
+     color: black; 
+     margin-top: auto; 
+     position: fixed;  
+     bottom: 0; 
+     left:0; 
+     right:0;
+ }
 
 /* Features box above button */
-.features-box { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.35); border-radius: 12px; padding: 12px; }
-.features-title { margin: 0 0 6px 0; font-size: 16px; font-weight: 700; }
+.features-box { background: rgba(255,255,255,0.12); 
+    border: 1px solid rgba(255,255,255,0.35); 
+    border-radius: 12px; 
+    padding: 12px; 
+}
+.features-title { margin: 0 0 6px 0; 
+    font-size: 16px;   
+    font-weight: 700; 
+}
 .features-list { margin: 0; padding-left: 18px; }
 .features-list li { margin: 4px 0; }
 
@@ -136,6 +181,7 @@ img { max-width: 100%; height: auto; border-radius: 16px; display: block; }
 }
 
 .sign{
+    font-size: larger;
     align-self: center;
     display:flex;
     place-content: center;
@@ -150,13 +196,13 @@ img { max-width: 100%; height: auto; border-radius: 16px; display: block; }
 
 .text{
     text-align: center;
-    margin-top:-30%;
+    margin-top:-40%;
     margin-bottom:4vh;
 }
 
 .signup-form {
     margin: 0 auto 30px;
-
+        font-size: large;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -194,7 +240,7 @@ img { max-width: 100%; height: auto; border-radius: 16px; display: block; }
 
 input::placeholder{
     color:white;
-    font-weight: bolder;
+    opacity:0.3;
 }
 
 .btn-submit {
