@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guzo</title>
+    <link rel="stylesheet" href="/src/userHome.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="nav">
+            <div class="title">Guzo</div>
+            <div class="buttons">
+                <button class="btn1">Home</button>
+                <button class="btn2">Trip History</button>
+                <button class="btn2">Logout</button>
+            </div>
+            <div class="menu">
+                <button class="btn4">Menu</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+    </div>
+
+     <!--footer-->
+     <div class="footer">
+        <p>
+            &copy; Developed By 
+            <a style="color:black;" href="https://portfolio-5blt.onrender.com/">Honelign</a>
+        </p>
+    </div> 
+
+    <%if(locals.message){%>
+    <script>
+        alert("<%=message%>")
+    </script>
+    <%}%>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: rgb(48,146,93);
+    color: white;
+    margin: 0;
+}
+
+.container {
+    flex: 1;
+    padding: 16px 5vw 24px;
+}
+
+.footer { 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: white; 
+    font-size: large;
+     height: 5.7vh; 
+     color: black; 
+     margin-top: auto; 
+     position: fixed;  
+     bottom: 0; 
+     left:0; 
+     right:0;
+ }
+
+ .nav{
+    display:flex;
+    margin:0;
+    padding:10px 5vh;
+    justify-content: space-between;
+    background-color: white;
+    color:black;
+}
+
+.title{
+    font-size: clamp(1.5rem,2rem,3rem);
+    font-family: fantasy;
+    font-size: clamp(1rem,2rem,3rem);
+}
+
+.btn1,
+.btn2,
+.btn3{
+    background-color:green;
+    border:none;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.menu{
+    display:none;
+}
+
+@media(max-width:480px){
+    .menu{
+        display:block;
+    }
+
+    .buttons{
+            display:none;
+    }
+}

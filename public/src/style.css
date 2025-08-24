@@ -174,7 +174,7 @@ img { max-width: 100%; height: auto; border-radius: 16px; display: block; }
 .main{
     display:flex;
     justify-content: center;
-    margin:5vh 2vh;
+    margin:7vh 2vh;
     flex-direction: column;
     height: 75vh;
     
