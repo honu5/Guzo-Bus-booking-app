@@ -43,14 +43,26 @@ body {
     font-size: clamp(1rem,2rem,3rem);
 }
 
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
 .btn1,
 .btn2,
-.btn3{
+.btn3,
+.btn4{
     background-color:green;
     border:none;
     color:white;
     border-radius:5px;
     cursor:pointer;
+    width:clamp(30px,70px,300px);
+}
+
+.btn4{
+    height:30px;
+    margin-top:7.5px;
 }
 
 .menu{
@@ -66,3 +78,15 @@ body {
             display:none;
     }
 }
+
+@media(min-width:1000px){
+
+    .buttons{
+         margin-right:30px;
+         display:flex;
+         gap:1rem;
+    }
+
+}
+
+
