@@ -5,27 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guzo</title>
     <link rel="stylesheet" href="/src/userHome.css">
+    <link rel="stylesheet" href="/src/main.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
 </head>
 <body>
 
     <!-- Navbar -->
     <header>
-        <nav class="nav">
-            <div class="title">Guzo</div>
-            <div class="buttons">
+        <nav  class="nav">
+            <div  style="background-color: white" class="first-nav">
+                <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
+                <div class="title item" >Guzo</div>
+            </div>
+            <!--<div class="buttons">
                 <button class="btn1">Home</button>
                 <button class="btn2">Trip History</button>
                 <button class="btn2">Logout</button>
             </div>
             <div class="menu">
                 <button class="btn4">Menu</button>
+            </div>-->
+            <div   class="search-bar item">
+                <input type="text" class="input-field"  placeholder="search routes." name="searchRoute">
+                <i class="fa-solid fa-search"></i>
+             </div>
+
+            <div  class="second-nav">
+                    <div class="notification item"><i class="fa-solid fa-bell notification-bar"></i></div>
+                    <div class="user-container item"><i class="fa-solid fa-circle-user user"></i>
+                    <div class="name-container item"><h3 class="user">Honelign<br> Yohannes</h3></div>
+                </div>
+                    
+                </div>
             </div>
+   
+
         </nav>
     </header>
 
-    <div class="container">
+    <div class="Mcontainer">
+        <div class="hero">        
+        </div>
+
+        <div class="form-main">
+            <div class="form-container">
+                <div class="adjust">
+                    <div class="text">Book Your Trip</div>
+                    <div class="form">
+                        <div class="departure input"><input type="text" placeholder="Departure"  name="From"/></div>
+                        <div class="destination input"><input type="text" placeholder="To"  name="destination"/></div>
+                        <div class="date input"><input type="date" name="date"/></div>
+                        <div  class="search input"> <button type="submit">Search</button></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <div class="container2">
+        <div class="inner-container">
+            <div style="background-color:rgb(48,146,93);" class="availables item">
+                <h3>Available Buses</h3>
+                <p>Here are all buses <br>available for booking right now.<br>Click the button and view the lists </p>
+                <button>View</button>
+            </div>
+            <div style="background-color:rgb(48,146,93);"  class="ticket item">
+                <h3>Your Bookings</h3>
+                <p>You can find your current Bookings <br> with tickets and Booking history of your <br> travel expreience</p>
+                <button>View</button>
+            </div>
+            <div style="background-color: rgb(48,146,93);" class="stations item">
+                <h3>Bus Stations</h3>
+                <p>Here are all Bus station lists with <br> available buses,amenities ,ratings an</p>
+                <button>View</button>
+            </div>
+        </div>
+    </div>
+
 
      <!--footer-->
      <div class="footer">
@@ -37,7 +97,7 @@
 
     <%if(locals.message){%>
     <script>
-        alert("<%=message%>")
+       // alert("<%=message%>")
     </script>
     <%}%>
 

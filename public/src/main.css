@@ -1,0 +1,180 @@
+
+.hero{
+    padding-top:10vh;
+    position: relative;
+    left:0;
+    right:0;
+    height:20vh;
+    margin-top:0;
+    text-align: center;
+    background-image: url('/Assets/background.jpg');
+    background-size: 100% 100%;       /* entire image is visible */
+    background-repeat: no-repeat;   /* don’t repeat the image */
+    background-position: center;    /* center the image horizontally */
+    width: 100%;                    /* full screen width */
+    height: 20vh; 
+}
+
+.form-container{
+    background-color: white;
+    position:absolute;
+    width:clamp(400px,50%,700px);
+    top:33vh;
+    color:black;
+    height:28vh;
+    text-align: center;
+    border-radius: 20px;
+    opacity:0.8;
+}
+
+.form-main,
+.form-container{
+    display: flex;
+    place-content:center;
+}
+
+.form-container .text{
+    font-size:1.5rem;
+}
+
+.adjust,
+.form{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    width:100%;
+}
+
+.form input{
+    width:70%;
+}
+
+.form .input{
+    width:70%;
+    height:30px;
+    display:flex;
+    place-content:center;
+}
+
+.form input::placeholder{
+    padding:10px;
+}
+
+.input button{
+    background-color:green;
+    color:white;
+    border:none;
+    width:clamp(100px,20%,250px);
+    border-radius:20px;
+
+}
+
+.input button:hover{
+    background-color:white;
+    color:black;
+    border:3px solid black;
+}
+
+@media (max-width:550px){
+    .form-container{top:33vh}
+
+}
+
+.container2{
+    position: relative;
+     display:flex;
+    top:28vh;
+    flex-direction: column;
+    margin-bottom: 34vh;
+}
+
+.inner-container{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    text-align: center;
+}
+
+.inner-container .item{
+    height:150px;
+    width:clamp(150px,70%,400px);
+    align-self: center;
+    padding-top: 0;
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    border-radius: 15px;
+    border:3px solid #F0FFFF;
+}
+
+.container2 h3{
+    margin:0;
+    padding-top:0px;
+}
+
+.container2 button{
+    width:clamp(70px,40%,120px);
+    height:30px;
+    border-radius: 15px;
+    align-self: center;
+    margin-bottom: -10px;
+    border: none;
+}
+
+.container2 button:hover{
+    background-color: green;
+    border:2px solid white;
+    color:white;
+}
+
+.inner-container .item:hover{
+    width:80%;
+    height:180px;
+    font-size: 1.25rem;
+}
+
+@media(min-width:570px){
+    .inner-container{
+        flex-direction: row;
+        justify-content: center;
+        gap:20px;
+    }
+
+    .inner-container .item{
+         width:25%;
+    }
+
+    .inner-container .item:hover{
+    width:25%;
+    height:170px;
+    font-size: 1rem;
+}
+
+}
+
+@media (max-width:1200px) and (min-width:570px){
+    .inner-container .item{
+         height:200px;
+    }
+
+    .inner-container .item:hover{
+    height:230px;
+    font-size: 1.15rem;
+}
+}
+
+@media (min-width:1000px){
+    .hero{
+       background-image: url('https://cdn-cf.cms.flixbus.com/drupal-assets/2023-01/gh-hero-image-tablet.jpeg'); 
+    }
+}
+
+
+
+
+
+
+
+
+
+

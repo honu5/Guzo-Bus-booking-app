@@ -5,6 +5,7 @@ body {
     background-color: rgb(48,146,93);
     color: white;
     margin: 0;
+    max-width:100vw;
 }
 
 .container {
@@ -31,19 +32,19 @@ body {
  .nav{
     display:flex;
     margin:0;
-    padding:10px 5vh;
-    justify-content: space-between;
+    padding:5px 0;
+    place-content: center;
     background-color: white;
     color:black;
+   
 }
 
 .title{
     font-size: clamp(1.5rem,2rem,3rem);
-    font-family: fantasy;
-    font-size: clamp(1rem,2rem,3rem);
+    font-family: fantasy;  
 }
 
-.buttons{
+/*.buttons{
     display:flex;
     gap:10px;
 }
@@ -68,6 +69,74 @@ body {
 .menu{
     display:none;
 }
+*/
+
+.first-nav,
+.second-nav{
+    display:flex;
+    place-content: center;
+    gap:10px;
+}
+
+.first-nav{
+    flex:0.75
+}
+
+.second-nav{
+    flex:1;
+}
+
+.name-container{
+    max-width: 500px;
+}
+
+.item{
+    place-content: center;
+}
+
+.item i{
+    font-size:clamp(1rem,1.5rem,2rem);
+    cursor: pointer;
+}
+
+.search-bar{
+    flex:2;
+    place-content: center;
+    position: relative;
+}
+
+.input-field{
+    width:70%;
+    height:40px;
+    border-radius:10px;
+    padding-left: 0.75rem;
+    margin-left: 2rem;
+}
+
+.first-nav{
+    margin-left: 1rem;
+    justify-content: flex-start;
+    gap:1rem;
+}
+
+.fa-search{
+    position: absolute;
+}
+
+.input-field::placeholder{
+    font-size: 1.35em;
+}
+
+.second-nav{
+    gap:0.75rem;
+    justify-content: space-evenly;
+}
+
+.user-container{
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+}
 
 @media(max-width:480px){
     .menu{
@@ -89,4 +158,65 @@ body {
 
 }
 
+@media(max-width:450px) {
+    .fa-search{right:3vw;top:20px;}
+
+}
+
+@media(max-width:500px) and (min-width:450px){
+
+    .fa-search{
+        right:7vw;
+        top:20px;
+}
+
+}
+
+@media(max-width:800px) and (min-width:500px){
+
+    .fa-search{
+        right:10vw;
+        top:20px;
+}
+
+}
+
+@media(min-width:800px){
+
+    .fa-search{
+        right:12vw;
+        top:25px;
+}
+
+}
+
+@media(min-width:1400px){
+
+    .fa-search{
+        right:15vw;
+        top:20px;
+}
+
+}
+
+@media(max-width:2000px) and (min-width:1300px){
+
+    .fa-search{
+        right:15vw;
+        top:20px;
+}
+
+}
+
+@media(min-width:1000px){
+
+    .second-nav i{font-size:2.2rem;}
+    .user{font-size: 1.2rem;}
+}
+
+@media(max-width:2500px){
+
+    .second-nav i{font-size:1.5rem;}
+    .user{font-size: 0.9rem;}
+}
 
