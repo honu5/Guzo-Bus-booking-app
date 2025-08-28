@@ -1,4 +1,3 @@
-
 .hero{
     padding-top:10vh;
     position: relative;
@@ -19,9 +18,9 @@
     background-color: white;
     position:absolute;
     width:clamp(400px,50%,700px);
-    top:33vh;
+    top:30vh;
     color:black;
-    height:28vh;
+    height:30vh;
     text-align: center;
     border-radius: 20px;
     opacity:0.8;
@@ -46,12 +45,15 @@
 }
 
 .form input{
-    width:70%;
+    width:80%;
+    height:30px;
+    border-radius: 25px;
+    padding-left:45px;
 }
 
 .form .input{
     width:70%;
-    height:30px;
+    height:37px;
     display:flex;
     place-content:center;
 }
@@ -85,13 +87,14 @@
      display:flex;
     top:28vh;
     flex-direction: column;
-    margin-bottom: 34vh;
+    margin-bottom: 44vh;
+   
 }
 
 .inner-container{
     display:flex;
     flex-direction: column;
-    gap:10px;
+    gap:40px;
     text-align: center;
 }
 
@@ -170,11 +173,49 @@
 }
 
 
+/*
+-------------------------
+Sidebar
+-------------------------
+*/ 
 
+.side-bar{position:relative}
 
+.side-bar-container{
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    height:100vh;
+    width:200px;
+    background-color: white;
+    border-bottom-right-radius: 20px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    display:flex;
+    z-index: 100;
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    color:black;
+    font-size: 1.2rem;
+    justify-content: flex-start;
+    align-items: center;
+    display: none;
+}
 
+.routes{
+    margin-top: 10vh;
+}
 
+.sid-option{
+    border:3px solid green;
+    width:180px;
+    height:32px;
+    border-radius: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+}
 
-
-
-
+.side-bar.active{
+    display: flex;
+}
