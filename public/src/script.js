@@ -1,10 +1,14 @@
 'use strict'
 
-const addEventOnElem = function (elem, type, callback) {
-    for (let i = 0; i < elem.length; i++) {
-        elem[i].addEventListener(type, callback);
+const addEventOnElem= function (elem,type,callback){
+    if (elem.length){
+        for (let i=0;i<elem.length;i++){
+            elem[i].addEventListener(type,callback);
+        }
+    }else{
+        elem.addEventListener(type,callback);
     }
-};
+}
 
 /* The eye-icon toggle for password display */
 const togglers = document.querySelectorAll('.toggler');

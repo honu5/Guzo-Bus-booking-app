@@ -49,6 +49,42 @@ app.get("/user",(req,res)=>{
     res.render("home")
 })
 
+app.get("/notifications",(req,res)=>{
+    res.render("notifications")
+})
+
+app.get("/about",(req,res)=>{
+    res.render("about")
+})
+
+app.get("/ask",(req,res)=>{
+    res.render("ask")
+})
+
+app.get("/availableBuses",(req,res)=>{
+    res.render("availableBuses")
+})
+
+app.get("/busStations",(req,res)=>{
+    res.render("busStations")
+})
+
+app.get("/profile",(req,res)=>{
+    res.render("profile")
+})
+
+app.get("/routes",(req,res)=>{
+    res.render("routes")
+})
+
+app.get("/userBooking",(req,res)=>{
+    res.render("userBooking")
+})
+
+app.get("/logout",(req,res)=>{
+    res.sendFile(path.join(direName,"public","Login.html"));
+})
+
 app.post("/signUp",async (req,res)=>{
     const {name,email,password,confirm_password}=req.body;
 
