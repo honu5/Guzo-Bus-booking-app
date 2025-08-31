@@ -211,7 +211,7 @@ Sidebar
 }
 
 .routes{
-    margin-top: 13vh;
+    margin-top: 15vh;
 }
 
 .sid-option{
@@ -229,7 +229,7 @@ Sidebar
 }
 
 .routes.active{
-    margin-top: 11vh;
+    margin-top: 10vh;
 }
 
 .sid-option:hover{

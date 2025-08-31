@@ -45,6 +45,10 @@ app.get("/login",(req,res)=>{
     res.sendFile(path.join(direName,"public","Login.html"));
 })
 
+app.get("/home",(req,res)=>{
+    res.render("home")
+})
+
 app.get("/user",(req,res)=>{
     res.render("home")
 })
@@ -57,8 +61,8 @@ app.get("/about",(req,res)=>{
     res.render("about")
 })
 
-app.get("/ask",(req,res)=>{
-    res.render("ask")
+app.get("/Ask",(req,res)=>{
+    res.render("askAi")
 })
 
 app.get("/availableBuses",(req,res)=>{

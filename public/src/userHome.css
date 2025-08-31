@@ -148,6 +148,13 @@ body {
     }
 }
 
+.second-nav a,
+.side-bar-container a {
+  color: black;           /* text color */
+  text-decoration: none;  /* removes underline */
+  display: block;         /* makes it fill parent div (optional) */
+}
+
 @media(min-width:1000px){
 
     .buttons{
