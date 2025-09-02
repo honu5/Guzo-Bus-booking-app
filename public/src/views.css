@@ -207,3 +207,96 @@ Sidebar
   text-decoration: none;  /* removes underline */
   display: block;         /* makes it fill parent div (optional) */
 }
+
+
+
+/*About Section*/
+
+.main-container {padding-block: 10vh;}
+
+ .about-container {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(50px,10rem,100px);
+  text-align: center;
+}
+
+.about-logo .image img {
+  width: clamp(150px, 40vw, 220px);
+  height: clamp(150px, 40vw, 220px);
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.about-inner-container1 {
+  max-width: 800px;
+}
+
+.about-inner-container1 .h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-inner-container1 .tagline {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #d9fdd3;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.paragraph {
+  text-align: justify;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f0f0f0;
+}
+
+/* --- Facts Section --- */
+.about-inner-container2 {
+  margin-top: 5rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.facts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.facts {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.5rem;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facts:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.facts i {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.facts h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+}
