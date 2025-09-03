@@ -8,6 +8,100 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Available Buses</title>
+    <style>
+        /* -----------------------
+   Available Buses Section
+----------------------- */
+.available-buses-container {
+  flex: 1;
+  padding: 2rem 1rem;
+  margin-bottom: 14vh; /* space for footer */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bus-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.2rem;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bus-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.bus-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.bus-info p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+  color: #eaeaea;
+}
+
+.bus-action button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.bus-action button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+/* Responsive layout */
+@media (min-width: 600px) {
+  .available-buses-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .bus-card {
+    flex: 1 1 calc(33% - 1rem);
+    flex-direction: column;
+    max-width: 300px;
+  }
+}
+
+.station-link {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.station-link:hover {
+  color: #d1ffd6; /* slightly brighter green */
+}
+
+.rating {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  color: #ffd700; /* gold star */
+}
+
+
+    </style>
 
 </head>
 <body>
@@ -18,7 +112,7 @@
 
             <div  class="first-nav nav-part">
                 <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
-                <div class="title item" >Guzo</div>
+                <div class="title item" ><a style="text-decoration: none; color: black;" href="home"> Guzo</a></div>
             </div>
 
             <div  style="z-index:1000;" class="nav-part">
@@ -46,6 +140,56 @@
             <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
         </div>
     </div>
+
+    <!-- Single Bus Card -->
+<div class="bus-card">
+  <div class="bus-info">
+    <h3>Bus #23</h3>
+    <p><strong>Route:</strong> Addis Ababa → Bahir Dar</p>
+    <p>
+      <strong>Station:</strong>
+      <a class="station-link" href="busStations#selam">Selam Bus</a> 
+      <span class="rating">⭐ 4.5</span>
+    </p>
+    <p><strong>Departure:</strong> 10:00 AM</p>
+  </div>
+  <div class="bus-action">
+    <button>Book</button>
+  </div>
+</div>
+
+<div class="bus-card">
+  <div class="bus-info">
+    <h3>Bus #45</h3>
+    <p><strong>Route:</strong> Hawassa → Gondar</p>
+    <p>
+      <strong>Station:</strong>
+      <a class="station-link" href="busStations#oda">Oda Bus</a> 
+      <span class="rating">⭐ 4.2</span>
+    </p>
+    <p><strong>Departure:</strong> 1:30 PM</p>
+  </div>
+  <div class="bus-action">
+    <button>Book</button>
+  </div>
+</div>
+
+<div class="bus-card">
+  <div class="bus-info">
+    <h3>Bus #12</h3>
+    <p><strong>Route:</strong> Dire Dawa → Harar</p>
+    <p>
+      <strong>Station:</strong>
+      <a class="station-link" href="busStations#dire-dawa">Dire Dawa Bus</a> 
+      <span class="rating">⭐ 4.8</span>
+    </p>
+    <p><strong>Departure:</strong> 9:00 AM</p>
+  </div>
+  <div class="bus-action">
+    <button>Book</button>
+  </div>
+</div>
+
 
     <!--footer-->
      <div style="z-index: 1000;" class="footer">

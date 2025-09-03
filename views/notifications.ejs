@@ -8,6 +8,67 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Notifications</title>
+    <style>
+        /* -----------------------
+   Notifications Section
+----------------------- */
+.notifications-container {
+  flex: 1;
+  padding: 2rem 1rem;
+  margin-bottom: 14vh; /* keep space above footer */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notification-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.2rem;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notification-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.notification-card i {
+  font-size: 1.8rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.notification-content h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.notification-content p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #eaeaea;
+}
+
+.notification-content .time {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+/* highlight unread */
+.notification-card.unread {
+  background: rgba(255, 255, 255, 0.25);
+  border-left: 5px solid #32a852;
+}
+
+    </style>
     
 </head>
 <body>
@@ -18,7 +79,7 @@
 
             <div  class="first-nav nav-part">
                 <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
-                <div class="title item" >Guzo</div>
+                <div class="title item" ><a style="text-decoration: none; color: black;" href="home"> Guzo</a></div>
             </div>
 
             <div  style="z-index:1000;" class="nav-part">
@@ -46,6 +107,39 @@
             <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
         </div>
     </div>
+
+    <main class="notifications-container">
+
+  <!-- Single Notification -->
+  <div class="notification-card unread">
+    <i class="fa-solid fa-bus"></i>
+    <div class="notification-content">
+      <h3>Your bus is arriving soon!</h3>
+      <p>Bus #23 to Addis Ababa is 10 minutes away.</p>
+      <span class="time">5 min ago</span>
+    </div>
+  </div>
+
+  <div class="notification-card">
+    <i class="fa-solid fa-ticket"></i>
+    <div class="notification-content">
+      <h3>Booking Confirmed</h3>
+      <p>Your ticket for Bahir Dar → Gondar has been confirmed.</p>
+      <span class="time">2 hrs ago</span>
+    </div>
+  </div>
+
+  <div class="notification-card">
+    <i class="fa-solid fa-info-circle"></i>
+    <div class="notification-content">
+      <h3>Service Update</h3>
+      <p>New routes are available in Hawassa. Check now!</p>
+      <span class="time">Yesterday</span>
+    </div>
+  </div>
+
+</main>
+
 
     <!--footer-->
      <div style="z-index: 1000;" class="footer">

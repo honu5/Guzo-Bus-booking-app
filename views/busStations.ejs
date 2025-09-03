@@ -8,6 +8,46 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Bus Stations</title>
+    <style>
+        body {
+            background-color: rgb(48, 146, 93);
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .station-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .station-card h2 {
+            margin-top: 0;
+        }
+
+        .amenities, .offers, .testimonials {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .amenities li, .offers li, .testimonials li {
+            margin: 5px 0;
+        }
+
+        .testimonials li {
+            font-style: italic;
+        }
+
+</style>
+
 
 </head>
 <body>
@@ -18,7 +58,7 @@
 
             <div  class="first-nav nav-part">
                 <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
-                <div class="title item" >Guzo</div>
+                <div class="title item" ><a style="text-decoration: none; color: black;" href="home"> Guzo</a></div>
             </div>
 
             <div  style="z-index:1000;" class="nav-part">
@@ -45,6 +85,39 @@
             <div class="About sid-option"><a href="about"><p>About</p></a></div>
             <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
         </div>
+    </div>
+
+     <div class="container">
+            <h1>Our Bus Stations</h1>
+            <% busStations.forEach(station => { %>
+            <div class="station-card">
+                <h2><%= station.name %> - <%= station.route %></h2>
+                <p><strong>Rating:</strong> <%= station.rating %> ⭐</p>
+                <p><strong>Contact:</strong> <%= station.contact %></p>
+                <p><strong>Notes:</strong> <%= station.notes %></p>
+
+                <h3>Amenities</h3>
+                <ul class="amenities">
+                <% station.amenities.forEach(amenity => { %>
+                    <li><%= amenity %></li>
+                <% }) %>
+                </ul>
+
+                <h3>Offers</h3>
+                <ul class="offers">
+                <% station.offers.forEach(offer => { %>
+                    <li><%= offer %></li>
+                <% }) %>
+                </ul>
+
+                <h3>Testimonials</h3>
+                <ul class="testimonials">
+                <% station.testimonials.forEach(testimonial => { %>
+                    <li><%= testimonial.name %>: "<%= testimonial.review %>"</li>
+                <% }) %>
+                </ul>
+            </div>
+            <% }) %>
     </div>
 
     <!--footer-->

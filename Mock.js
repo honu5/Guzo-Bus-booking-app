@@ -114,4 +114,8 @@ export const userProfile = {
   favorite_routes: ["Addis Ababa → Hawassa", "Addis Ababa → Bahir Dar"]
 };
 
+export const availableBuses={
+
+}
+
 

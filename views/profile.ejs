@@ -8,6 +8,60 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Profile</title>
+    <style>
+            body {
+            background-color: rgb(48,146,93);
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            }
+            .container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 90vh;
+            }
+            .profile-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 25px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .profile-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            }
+            .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            }
+            .profile-header img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            }
+            .profile-header h2 {
+            margin: 0;
+            }
+            .profile-info p {
+            margin: 5px 0;
+            }
+            .favorites {
+            margin-top: 15px;
+            }
+            .favorites ul {
+            list-style: disc;
+            padding-left: 20px;
+            }
+    </style>
     
 </head>
 <body>
@@ -18,7 +72,7 @@
 
             <div  class="first-nav nav-part">
                 <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
-                <div class="title item" >Guzo</div>
+                <div class="title item" ><a style="text-decoration: none; color: black;" href="home"> Guzo</a></div>
             </div>
 
             <div  style="z-index:1000;" class="nav-part">
@@ -44,6 +98,31 @@
             <div class="settings sid-option"><p>Settings</p></div>
             <div class="About sid-option"><a href="about"><p>About</p></a></div>
             <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+            <img src="/Assets/profile.jpg" alt="Profile Picture">
+            <div>
+                <h2><%= user.name %></h2>
+                <p>Email: <%= user.email %></p>
+                <p>Phone: <%= user.phone %></p>
+                <p>Member since: <%= user.member_since %></p>
+            </div>
+            </div>
+            <div class="profile-info">
+            <p><strong>Total Bookings:</strong> <%= user.total_bookings %></p>
+            <div class="favorites">
+                <p><strong>Favorite Routes:</strong></p>
+                <ul>
+                <% user.favorite_routes.forEach(route => { %>
+                    <li><%= route %></li>
+                <% }) %>
+                </ul>
+            </div>
+            </div>
         </div>
     </div>
 

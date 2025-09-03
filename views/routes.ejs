@@ -8,6 +8,40 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Routes</title>
+    <style>
+    body {
+      background-color: rgb(48,146,93);
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .container {
+      padding: 20px;
+    }
+    .route-card {
+      background: rgba(255,255,255,0.15);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .route-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    .route-card h2 {
+      margin-top: 0;
+    }
+    .route-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .route-details p {
+      margin: 5px 0;
+    }
+  </style>
     
 </head>
 <body>
@@ -18,7 +52,7 @@
 
             <div  class="first-nav nav-part">
                 <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
-                <div class="title item" >Guzo</div>
+                <div class="title item" ><a style="text-decoration: none; color: black;" href="home"> Guzo</a></div>
             </div>
 
             <div  style="z-index:1000;" class="nav-part">
@@ -45,6 +79,21 @@
             <div class="About sid-option"><a href="about"><p>About</p></a></div>
             <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
         </div>
+    </div>
+
+    <div class="container">
+            <h1>Available Routes</h1>
+            <% routes.forEach(route => { %>
+                <div class="route-card">
+                <h2><%= route.from %> → <%= route.to %></h2>
+                <div class="route-details">
+                    <p><strong>Duration:</strong> <%= route.duration %></p>
+                    <p><strong>Distance:</strong> <%= route.distance %></p>
+                    <p><strong>Buses Available:</strong> <%= route.buses_available %></p>
+                    <p><strong>Fare:</strong> <%= route.fare %></p>
+                </div>
+                </div>
+            <% }) %>
     </div>
 
     <!--footer-->

@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import {Pool} from "pg"
 import bcrypt from "bcrypt";
+import { userProfile,routes,busStations,bookings } from "./Mock.js";
 
 const app=express()
 const port=3000;
@@ -70,19 +71,19 @@ app.get("/availableBuses",(req,res)=>{
 })
 
 app.get("/busStations",(req,res)=>{
-    res.render("busStations")
+    res.render("busStations",{busStations})
 })
 
 app.get("/profile",(req,res)=>{
-    res.render("profile")
+    res.render("profile",{user:userProfile})
 })
 
 app.get("/routes",(req,res)=>{
-    res.render("routes")
+    res.render("routes",{routes})
 })
 
 app.get("/userBooking",(req,res)=>{
-    res.render("userBooking")
+    res.render("userBooking",{bookings})
 })
 
 app.get("/logout",(req,res)=>{
