@@ -35,7 +35,7 @@ app.set("views" , path.join(direName,"./views"))
 app.set("view engine" , "ejs");
 
 app.get("/",(req,res)=>{
-    res.render("landing");
+    res.render("Busman");
 })
 
 app.get("/signUp",(req,res)=>{
