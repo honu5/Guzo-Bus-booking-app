@@ -5,6 +5,13 @@ import path from "path";
 import {Pool} from "pg"
 import bcrypt from "bcrypt";
 import { userProfile,routes,busStations,bookings } from "./Mock.js";
+import { marked } from "marked";
+import { getGeminiResponse, setLanguage, getLanguage } from "./utils/geminiWrapper.js";
+import session from 'express-session';
+
+
+
+
 
 const app=express()
 const port=3000;
@@ -20,6 +27,8 @@ const pool=new Pool({
     port:5432
 })
 
+
+
 try{
     pool.connect()
         .then(()=>console.log("connected succesfully"));
@@ -31,12 +40,108 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(direName,"./public")))
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || "fallback-secret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+function initSessionData(req) {
+  if (!req.session.topics) req.session.topics = [];
+  if (!req.session.conversations) req.session.conversations = {};
+}
+
 app.set("views" , path.join(direName,"./views"))
 app.set("view engine" , "ejs");
 
 app.get("/",(req,res)=>{
-    res.render("Busman");
+    res.render("home");
 })
+
+app.get("/Ask", (req, res) => {
+  initSessionData(req);
+  res.render("askAi", { topics: req.session.topics });
+});
+
+
+
+
+
+app.post("/other", async (req, res) => {
+  initSessionData(req);
+  const message = req.body.user_input;
+
+  let topicObj = req.session.topics.find(t => t.title === message.slice(0, 30));
+  if (!topicObj) {
+    topicObj = { id: Date.now(), title: message.slice(0, 30) };
+    req.session.topics.push(topicObj);
+    req.session.conversations[topicObj.id] = [];
+  }
+
+  const rresponse = await getGeminiResponse(message, req.session.conversations[topicObj.id]);
+  const response = marked.parse(rresponse);
+
+  req.session.conversations[topicObj.id].push({ message, response });
+
+  res.redirect(`/other/${topicObj.id}`);
+});
+
+app.get("/other/:id", (req, res) => {
+  initSessionData(req);
+  const topicId = parseInt(req.params.id);
+  res.render("other", { 
+    ans: req.session.conversations[topicId] || [], 
+    topics: req.session.topics, 
+    topicId 
+  });
+});
+
+app.post("/chat", async (req, res) => {
+  initSessionData(req);
+  const message = req.body.user_input;
+  const topicId = parseInt(req.body.topic_id);
+
+  if (!req.session.conversations[topicId]) req.session.conversations[topicId] = [];
+
+  const rresponse = await getGeminiResponse(message, req.session.conversations[topicId]);
+  const response = marked.parse(rresponse);
+
+  req.session.conversations[topicId].push({ message, response });
+
+  res.redirect(`/chat/${topicId}`);
+});
+
+app.get("/Ask", (req, res) => {
+  initSessionData(req);
+  res.render("askAi", { topics: req.session.topics });
+});
+
+app.get("/chat/:id", (req, res) => {
+  initSessionData(req);
+  const topicId = parseInt(req.params.id);
+  res.render("other", { 
+    ans: req.session.conversations[topicId] || [], 
+    topics: req.session.topics, 
+    topicId 
+  });
+});
+
+
+
+app.post("/toggle-language", (req, res) => {
+  const current = getLanguage();
+  const newLang = current === "amharic" ? "english" : "amharic";
+  setLanguage(newLang);
+  res.json({ lang: newLang });
+});
+
+
+
+
+
+
+
 
 app.get("/signUp",(req,res)=>{
     res.sendFile(path.join(direName,"public","signUp.html"));

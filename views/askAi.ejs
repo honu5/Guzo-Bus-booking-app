@@ -1,67 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/views.css">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Ask AI</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASK AI</title>
+  <link rel="stylesheet" href="/src/AI.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
-
+  <div class="container0">
   <div class="container">
-        <!-- Navbar -->
-    <header>
-        <nav class="nav">
-
-            <div  class="first-nav nav-part">
-                <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
-                <div class="title item" ><a style="text-decoration: none; color: black;" href="home"> Guzo</a></div>
-            </div>
-
-            <div  style="z-index:1000;" class="nav-part">
-                <div class="item"><h1>Ask AI</h1></div>
-            </div>
-              
-            <div  class="second-nav nav-part">
-                <div class="nav-part">
-                        <div style="margin-left: -7%;" class="notification item"><a href="notifications"> <i class="fa-solid fa-bell notification-bar"></i></a></div>
-                        <div style="margin-right: -7%;" class="user-container item"><a href="profile"><i class="fa-solid fa-circle-user user"></i></a></div>                   
-                        <div class="name-container item"><a href="profile"> <h3 class="user">Honelign <br> Yohannes</h3></a></div>
-                </div>
-            </div>
-
-        </nav>
-    </header>
-
-    <div class="side-bar">
-        <div class="side-bar-container">
-            <div class="routes sid-option"><a href="home"><p>Home</p></a></div>
-             <div class="route sid-option"><a href="routes"><p>Routes</p></a></div>
-            <div class="Ask sid-option"><a href="Ask"><p>Ask AI</p></a></div>
-            <div class="settings sid-option"><p>Settings</p></div>
-            <div class="About sid-option"><a href="about"><p>About</p></a></div>
-            <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
-        </div>
+    <div style="margin-top: -25vh;" class="navbar">
+      <button class="icon-button sdbr" title="Sidebar">
+        <i data-lucide="sidebar"></i>
+      </button>
+      <button class="icon-button srch" title="Search">
+        <i data-lucide="search"></i>
+      </button>
+      <button onclick="window.location.href='/Ask'" class="icon-button nwct" title="New Chat">
+        <i data-lucide="message-square-plus"></i>
+      </button>
+      <button class="icon-button stgs" title="Settings">
+        <i data-lucide="settings"></i>
+      </button>
     </div>
 
-    <div class="explanation">
-        <ul class="explanation-list">
-            <h2>Here is an AI model trained to answer everything related with Guzo<br></h2><h3>Just ask here.It will assit you with:</h3>
-            <li>How to use the app</li>
-            <li>The features and services  of the app</li>
-            <li>Available Buses right now with real time tracking</li>
-            <li>Bus schedules and routes.</li>
-            <li>Recommendations for nearby routes and stops that match your trip</li>
 
-        </ul>
-    </div>
 
-    <div class="input-container" style="margin-top: 5vh;">
-      <div class="titl">
+
+    <div style="margin-top: 35vh;">
+      <div class="title">
         <h1>What can I help with?</h1>
       </div>
 
@@ -73,28 +42,127 @@
             autocorrect="off" 
             type="text"
             name="user_input" 
-            placeholder="Ask me anything about Guzo..." 
+            placeholder="Ask me anything with in Ethiopia" 
             required
           >
           <button class="btns" type="submit">
-            <i class="fa-solid fa-arrow-up"></i>
+            <i data-lucide="arrow-up"></i>
           </button>
         </form>
       </div>
     </div>
   </div>
 
+  <div class="container2">
+    <div class="nav">
+
+      <div class="icon">
+        <div class="btn1">
+          <button class="icon-button" title="Sidebar">
+            <i data-lucide="sidebar"></i>
+          </button>
+        </div>
+        <div class="para">Side bar</div>
+      </div>
+
+      <div class="icon">
+        <div class="btn2">
+          <button class="icon-button" title="Sidebar">
+            <i data-lucide="search"></i>
+          </button>
+        </div>
+        <div class="para">Search</div>
+      </div>
+
+      <div class="icon">
+        <div class="btn3" onclick="window.location.href='/Ask'">
+          <button class="icon-button" title="New Chat">
+            <i data-lucide="message-square-plus"></i>
+          </button>
+        </div>
+        <div class="para">New Chat</div>
+      </div>
+
+      <div class="icon">
+        <div class="btn4">
+          <button class="icon-button" title="New Chat">
+            <i data-lucide="settings"></i>
+          </button>
+        </div>
+        <div class="para">Settings</div>
+      </div>
+
+      <div class="searchChats">
+        
+      </div>
+
+    </div> <!-- end .nav -->
+
+    
+
+    <div class="settings-list">
+                    <ul class="lists">
+                        <li><button      id="langToggleBtn"  style="background-color: black; color: white;" class="stngs">Change language</button></li>
+                        <li><button style="background-color: black; color: white;" class="stngs">Change Model</button></li>
+                        <li><button style="background-color: black; color: white;" class="stngs">Logout</button></li>
+                    </ul>
+                </div>
+
+    <div class="chat-history">
+    <ul class="chats"><span id="chats">Chats</span>
+        <% topics.forEach((topic, index) => { %>
+<button id="<%= topic.id %>" style="background-color: black; color:white ; border-radius: 7%;">
+  <li class="speci" onclick="window.location.href='/chat/<%= topic.id %>'">
+    <%= topic.title %>
+  </li>
+</button>
+        <% }) %>
+    </ul>
+
+
+
+        </div>
+         <div class="settings-list">
+            <ul class="lists">
+                <li class="stngs">Change language</li>
+                <li class="stngs">Change Model</li>
+            </ul>
+         </div>
+
+        <!--<div class="icon profile">
+                <div class="btn">
+                     <button onclick="window.location.href='profile'" class="icon-button" title="user">
+                        <i class="he" data-lucide="user" ></i>
+                    </button> 
+                </div>
+              
+                     
+                <div class="para">Honelign Yohannes</div>
+        </div>
+      -->
+      
+    </div>
   </div>
+  </div>
+  
+  <footer class="footer">
+    <p>&copy; Developed By <a style="color: white;" href="https://portfolio-5blt.onrender.com/">Liranso</a></p>
+    
 
-    <!--footer-->
-     <div style="z-index: 1000;" class="footer">
-        <p>
-            &copy; Developed By 
-            <a style="color:black;" href="https://portfolio-5blt.onrender.com/">Honelign</a>
-        </p>
-    </div> 
-   
-<script src="src/userHome.js"></script>
+  </footer>
+  
 
+  <script>
+document.getElementById("langToggleBtn").addEventListener("click", async () => {
+  const res = await fetch("/toggle-language", { method: "POST" });
+  const data = await res.json();
+});
+</script>
+
+  <script src="/src/app.js"></script>
+  <script>
+    
+    lucide.createIcons();
+  </script>
 </body>
 </html>

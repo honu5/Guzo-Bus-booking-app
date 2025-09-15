@@ -1,38 +1,37 @@
 'use strict'
 
-const addEventOnElem= function (elem,type,callback){
-    if (elem.length){
-        for (let i=0;i<elem.length;i++){
-            elem[i].addEventListener(type,callback);
+// Utility function for event handling
+const addEventOnElem = (elem, type, callback) => {
+    if (elem.length) {
+        for (let i = 0; i < elem.length; i++) {
+            elem[i].addEventListener(type, callback);
         }
-    }else{
-        elem.addEventListener(type,callback);
+    } else {
+        elem.addEventListener(type, callback);
     }
 }
 
-const threedash=document.querySelector('.three-dash')
-const sidebar=document.querySelector('.side-bar-container')
-const routes=document.querySelector('.routes')
+// DOM elements
+const threedash = document.querySelector('.three-dash');
+const sidebar = document.querySelector('.side-bar-container');
+const routes = document.querySelector('.routes');
 
-const sidebar_function=function (){
-    sidebar.classList.toggle("active")
-}
+// Sidebar toggle function
+const toggleSidebar = () => sidebar.classList.toggle("active");
 
-addEventOnElem(threedash,'click',sidebar_function);
+// Event listeners
+addEventOnElem(threedash, 'click', toggleSidebar);
 
-document.addEventListener('click', function(event) {
-  if (!sidebar.contains(event.target) && !threedash.contains(event.target)) {
-    sidebar.classList.remove('active');
-  }
+// Close sidebar when clicking outside
+document.addEventListener('click', (event) => {
+    if (!sidebar.contains(event.target) && !threedash.contains(event.target)) {
+        sidebar.classList.remove('active');
+    }
 });
 
-window.addEventListener("scroll",function (){
-    if (window.scrollY>20){
-        routes.classList.add("active");
-    }
-    else{
-        routes.classList.remove("active");
-    }
+// Scroll effect for routes
+window.addEventListener("scroll", () => {
+    routes.classList.toggle("active", window.scrollY > 20);
 });
 
 

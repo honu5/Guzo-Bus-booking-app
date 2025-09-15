@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASK AI</title>
+  <link rel="stylesheet" href="/src/AI.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+  <div class="class3">
+          <div class="container0">
+                  <div class="container">
+                    
+                  
+                      <div class="navbar">
+                        <button class="icon-button sdbr" title="Sidebar"><i data-lucide="sidebar"></i></button>
+                        <button class="icon-button srch" title="Search"><i data-lucide="search"></i></button>
+                        <button onclick="window.location.href='/Ask'" class="icon-button nwct" title="New Chat"><i data-lucide="message-square-plus"></i></button>
+                        <button class="icon-button  stgs" title="Settings"><i data-lucide="settings"></i></button>
+                      </div>
+
+                      
+                      <div class="welcome-text">
+                        <h1>Welcome to ChatBot</h1>
+                      </div>
+                    
+
+                    
+                    <div class="chat-container">
+                      <% for (let i = 0; i < ans.length; i++) { %>
+                        <div class="chat-row user-message">
+                          <div class="chat-bubble message"><%= ans[i].message %></div>
+                        </div>
+                        <div class="chat-row bot-response">
+                          <div class="chat-bubble response"><%- ans[i].response %></div>
+                        </div>
+                      <% } %>
+                    </div>
+
+                    
+                    <div class="form">
+                  <form action="/chat" method="post">
+                  <input type="hidden" name="topic_id" value="<%= topicId %>" />
+                  <input style="margin-top: 10%;" class="input1" autocomplete="off" autocorrect="off" type="text" name="user_input" placeholder="Ask me anything within Ethiopia" required>
+                  <button class="btns" type="submit"><i data-lucide="arrow-up"></i></button>
+                  </form>
+
+                </div>
+                  </div>
+
+
+          
+            <div class="container2">
+                <div class="nav">
+                    <div class="icon">
+                        <div class="btn1"><button class="icon-button" title="Sidebar">
+                        <i data-lucide="sidebar" ></i></div>
+                            </button> 
+                        <div class="para">Side bar</div>
+                    </div>
+                    
+                    <div class="icon">
+                      <div class="btn2"><button class="icon-button" title="Sidebar">
+                        <i data-lucide="search" ></i></div>
+                            </button> 
+                        <div class="para">Search</div>
+                    </div>
+
+                    <div class="icon">
+                      <div  onclick="window.location.href='/Ask'" class="btn3"><button class="icon-button" title="New Chat">
+                        <i data-lucide="message-square-plus"></i></div>
+                            </button> 
+                        <div class="para">New Chat</div>
+                    </div>
+
+                    <div class="icon">
+                        <div class="btn4"><button class="icon-button" title="New Chat">
+                        <i data-lucide="settings"></i></div>
+                            </button> 
+                        <div class="para">Settings</div>
+                    </div>
+                    
+                    <div class="searchChats">
+                    
+                </div>
+                </div>
+                
+        <div class="chat-history">
+            <ul class="chats"><span id="chats">Chats</span>
+                <% topics.forEach((topic, index) => { %>
+        <button id="<%= topic.id %>" style="background-color: black; color:white ; border-radius: 7%;">
+          <li class="speci" onclick="window.location.href='/chat/<%= topic.id %>'">
+            <%= topic.title %>
+          </li>
+        </button>
+                <% }) %>
+            </ul>
+
+
+
+                </div>
+                <div class="settings-list">
+                    <ul class="lists">
+                        <li><button      id="langToggleBtn"  style="background-color: black; color: white;" class="stngs">Change language</button></li>
+                        <li><button style="background-color: black; color: white;" class="stngs">Change Model</button></li>
+                    </ul>
+                </div>
+
+                
+            </div>
+          </div>
+    </div>
+
+
+
+    
+
+  <script>
+document.getElementById("langToggleBtn").addEventListener("click", async () => {
+  const res = await fetch("/toggle-language", { method: "POST" });
+  const data = await res.json();
+});
+</script>
+
+  
+  <script>
+  window.addEventListener('load', function () {
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
+
+
+  <script src="/src/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
