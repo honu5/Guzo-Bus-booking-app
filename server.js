@@ -10,7 +10,7 @@ import { getGeminiResponse, setLanguage, getLanguage } from "./utils/geminiWrapp
 import session from 'express-session';
 
 
-
+let user="Busman"; // Change to "Busman" to simulate bus manager view
 
 
 const app=express()
@@ -56,7 +56,12 @@ app.set("views" , path.join(direName,"./views"))
 app.set("view engine" , "ejs");
 
 app.get("/",(req,res)=>{
-    res.render("home");
+    if (user=="user"){
+        res.render("home")
+    }
+    else{
+    res.render("Busman");
+    }
 })
 
 app.get("/Ask", (req, res) => {
@@ -190,6 +195,41 @@ app.get("/routes",(req,res)=>{
 app.get("/userBooking",(req,res)=>{
     res.render("userBooking",{bookings})
 })
+
+app.get("/comments",(req,res)=>{
+    res.render("comment");
+})
+
+app.get("/Listing",(req,res)=>{
+    res.render("Listing");
+})
+
+app.get("/MyBus",(req,res)=>{
+    res.render("MyBus");
+})
+
+app.get("/post",(req,res)=>{
+    // Build list of unique places from routes mock
+    const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
+    res.render("post", { places });
+})
+
+// Handle schedule post submissions
+app.post("/post", (req, res) => {
+    const { route, from, to, date, departure, price, reminder } = req.body;
+    const computedRoute = route && route.trim() ? route.trim() : (from && to ? `${from} → ${to}` : "");
+    // TODO: Save to DB. For now, just render success.
+    // Basic presence check (server-side) – optional
+    if (!computedRoute || !date || !departure || !price || !reminder) {
+        const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
+        return res.status(400).render("post", { success: false, error: "Please fill in all fields.", places });
+    }
+    // In a real implementation, insert into a schedules table here.
+    const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
+    res.render("post", { success: true, places });
+});
+
+
 
 app.get("/logout",(req,res)=>{
     res.sendFile(path.join(direName,"public","Login.html"));
