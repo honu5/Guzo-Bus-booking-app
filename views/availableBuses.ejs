@@ -118,7 +118,7 @@
             </div>
 
             <div  style="z-index:1000;" class="nav-part">
-                <div class="item"><h1> Available Buses</h1></div>
+                <div class="item"><h1 class="topic"> Available Buses</h1></div>
             </div>
               
             <div  class="second-nav nav-part">
@@ -132,64 +132,132 @@
         </nav>
     </header>
 
-    <div class="side-bar">
-        <div class="side-bar-container">
-            <div class="routes sid-option"><a href="home"><p>Home</p></a></div>
-             <div class="route sid-option"><a href="routes"><p>Routes</p></a></div>
-            <div class="Ask sid-option"><a href="Ask"><p>Ask AI</p></a></div>
-            <div class="settings sid-option"><p>Settings</p></div>
-            <div class="About sid-option"><a href="about"><p>About</p></a></div>
-            <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
+    <div style="margin-top: 10vh; display: flex; flex-direction: row; gap:30px; flex-wrap: wrap; margin-bottom: 3vh; " class="avi-container">
+
+          <div  class="side-bar">
+              <div class="side-bar-container">
+                  <div class="routes sid-option"><a href="home"><p>Home</p></a></div>
+                  <div class="route sid-option"><a href="routes"><p>Routes</p></a></div>
+                  <div class="Ask sid-option"><a href="Ask"><p>Ask AI</p></a></div>
+                  <div class="settings sid-option"><p>Settings</p></div>
+                  <div class="About sid-option"><a href="about"><p>About</p></a></div>
+                  <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
+              </div>
+          </div>
+
+          <!-- Single Bus Card -->
+      <div class="bus-card">
+        <div class="bus-info">
+          <h3>Bus #23</h3>
+          <p><strong>Route:</strong> Addis Ababa → Bahir Dar</p>
+          <p>
+            <strong>Station:</strong>
+            <a class="station-link" href="busStations#selam">Selam Bus</a> 
+            <span class="rating">⭐ 4.5</span>
+          </p>
+          <p><strong>Departure:</strong> 10:00 AM</p>
         </div>
-    </div>
+        <div class="bus-action">
+          <button>Book</button>
+        </div>
+      </div>
 
-    <!-- Single Bus Card -->
-<div class="bus-card">
-  <div class="bus-info">
-    <h3>Bus #23</h3>
-    <p><strong>Route:</strong> Addis Ababa → Bahir Dar</p>
-    <p>
-      <strong>Station:</strong>
-      <a class="station-link" href="busStations#selam">Selam Bus</a> 
-      <span class="rating">⭐ 4.5</span>
-    </p>
-    <p><strong>Departure:</strong> 10:00 AM</p>
-  </div>
-  <div class="bus-action">
-    <button>Book</button>
-  </div>
-</div>
+      <div class="bus-card">
+        <div class="bus-info">
+          <h3>Bus #45</h3>
+          <p><strong>Route:</strong> Hawassa → Gondar</p>
+          <p>
+            <strong>Station:</strong>
+            <a class="station-link" href="busStations#oda">Oda Bus</a> 
+            <span class="rating">⭐ 4.2</span>
+          </p>
+          <p><strong>Departure:</strong> 1:30 PM</p>
+        </div>
+        <div class="bus-action">
+          <button>Book</button>
+        </div>
+      </div>
 
-<div class="bus-card">
-  <div class="bus-info">
-    <h3>Bus #45</h3>
-    <p><strong>Route:</strong> Hawassa → Gondar</p>
-    <p>
-      <strong>Station:</strong>
-      <a class="station-link" href="busStations#oda">Oda Bus</a> 
-      <span class="rating">⭐ 4.2</span>
-    </p>
-    <p><strong>Departure:</strong> 1:30 PM</p>
-  </div>
-  <div class="bus-action">
-    <button>Book</button>
-  </div>
-</div>
+      <div class="bus-card">
+        <div class="bus-info">
+          <h3>Bus #12</h3>
+          <p><strong>Route:</strong> Dire Dawa → Harar</p>
+          <p>
+            <strong>Station:</strong>
+            <a class="station-link" href="busStations#dire-dawa">Dire Dawa Bus</a> 
+            <span class="rating">⭐ 4.8</span>
+          </p>
+          <p><strong>Departure:</strong> 9:00 AM</p>
+        </div>
+        <div class="bus-action">
+          <button>Book</button>
+        </div>
+      </div>
 
-<div class="bus-card">
-  <div class="bus-info">
-    <h3>Bus #12</h3>
-    <p><strong>Route:</strong> Dire Dawa → Harar</p>
-    <p>
-      <strong>Station:</strong>
-      <a class="station-link" href="busStations#dire-dawa">Dire Dawa Bus</a> 
-      <span class="rating">⭐ 4.8</span>
-    </p>
-    <p><strong>Departure:</strong> 9:00 AM</p>
-  </div>
-  <div class="bus-action">
-    <button>Book</button>
-  </div>
+      <div class="bus-card">
+        <div class="bus-info">
+          <h3>Bus #45</h3>
+          <p><strong>Route:</strong> Hawassa → Gondar</p>
+          <p>
+            <strong>Station:</strong>
+            <a class="station-link" href="busStations#oda">Oda Bus</a> 
+            <span class="rating">⭐ 4.2</span>
+          </p>
+          <p><strong>Departure:</strong> 1:30 PM</p>
+        </div>
+        <div class="bus-action">
+          <button>Book</button>
+        </div>
+      </div>
+
+      <div class="bus-card">
+        <div class="bus-info">
+          <h3>Bus #45</h3>
+          <p><strong>Route:</strong> Hawassa → Gondar</p>
+          <p>
+            <strong>Station:</strong>
+            <a class="station-link" href="busStations#oda">Oda Bus</a> 
+            <span class="rating">⭐ 4.2</span>
+          </p>
+          <p><strong>Departure:</strong> 1:30 PM</p>
+        </div>
+        <div class="bus-action">
+          <button>Book</button>
+        </div>
+      </div>
+
+      <div class="bus-card">
+        <div class="bus-info">
+          <h3>Bus #45</h3>
+          <p><strong>Route:</strong> Hawassa → Gondar</p>
+          <p>
+            <strong>Station:</strong>
+            <a class="station-link" href="busStations#oda">Oda Bus</a> 
+            <span class="rating">⭐ 4.2</span>
+          </p>
+          <p><strong>Departure:</strong> 1:30 PM</p>
+        </div>
+        <div class="bus-action">
+          <button>Book</button>
+        </div>
+      </div>
+
+      <div class="bus-card">
+        <div class="bus-info">
+          <h3>Bus #45</h3>
+          <p><strong>Route:</strong> Hawassa → Gondar</p>
+          <p>
+            <strong>Station:</strong>
+            <a class="station-link" href="busStations#oda">Oda Bus</a> 
+            <span class="rating">⭐ 4.2</span>
+          </p>
+          <p><strong>Departure:</strong> 1:30 PM</p>
+        </div>
+        <div class="bus-action">
+          <button>Book</button>
+        </div>
+      </div>
+
 </div>
 
 

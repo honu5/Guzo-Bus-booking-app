@@ -20,14 +20,37 @@
 
         .container {
             padding: 20px;
+            
         }
 
         .station-card {
             background-color: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
+            width: 40vw;
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width:800px){
+            .station-card{
+                width:70vw;
+            }
+
+            .container{
+                justify-content: center ;
+            }
+        }
+
+
+         @media (min-width:2000px){
+            .station-card{
+                width:30vw;
+            }
+
+            .container{
+                justify-content: center ;
+            }
         }
 
         .station-card h2 {
@@ -88,8 +111,8 @@
         </div>
     </div>
 
-     <div class="container">
-            <h1>Our Bus Stations</h1>
+     <div  style="margin-top: 7vh; padding-inline: 2vh; display: flex; flex-wrap: wrap; gap: 20px;" class="container">
+            
             <% busStations.forEach(station => { %>
             <div class="station-card">
                 <h2><%= station.name %> - <%= station.route %></h2>

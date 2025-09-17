@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Scehdule</title>
+    <link rel="stylesheet" href="/src/shared.css">
+    <link rel="stylesheet" href="/src/userHome.css">
+    <link rel="stylesheet" href="/src/main.css">
+    <style>
+
+        .search-bar h2{
+            text-align: center; position:relative; bottom:7px;
+        }
+        @media (max-width: 600px) {
+            .search-bar h2{
+                position: relative;
+                bottom:0;
+            }
+        }
+
+        /* Internal styles for Post Schedule form (moved from inline) */
+        .post-main {
+            min-height: 85vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 1rem;
+            margin-bottom: 7vh;
+        }
+
+        .form-group input{
+          height:57px;
+        }
+
+        .form-group textarea{
+          height:70px;
+        }
+
+        .form-group{
+            display: flex;  
+            flex-direction: column;
+            gap:10px;
+            
+        }
+
+
+
+        .post-card {
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .post-card-header { margin-bottom: 1rem; }
+        .post-card-header h2 { margin: 0; }
+        .post-card-header p { margin: .25rem 0 0; color: #555; }
+
+        .alert-success {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #256029;
+            margin-bottom: 1rem;
+        }
+
+        .post-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .post-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .form-actions {
+            display: flex;
+            gap: .75rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            
+        }
+    </style>
+
+
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <nav  class="nav">
+            <div  style="background-color: white; z-index:1000;" class="first-nav">
+                <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
+                <div class="title item" >Guzo</div>
+            </div>
+           
+            <div  style="z-index:1000;" class="search-bar item">
+                <h2  >New Schedule</h2>
+             </div>
+
+            <div style="z-index:1000;" class="second-nav">
+                    <div class="notification item"><a href="notifications"> <i class="fa-solid fa-bell notification-bar"></i></a></div>
+                    <div class="user-container item"><a href="profile"> <i class="fa-solid fa-bus user"></i></a>
+                    <div class="name-container item"> <a href="profile"> <h3 class="user">Bus Station<br> Name</h3></a></div>
+            </div>
+                    
+                </div>
+            </div>
+   
+
+        </nav>
+    </header>
+
+    <div class="side-bar">
+        <div class="side-bar-container">
+            <div class="routes sid-option"><a href="home"><p>Home</p></a></div>
+             <div class="route sid-option"><a href="comments"><p>Comments</p></a></div>
+            <div class="settings sid-option"><p>Settings</p></div>
+            <div class="About sid-option"><a href="about"><p>About</p></a></div>
+            <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
+        </div>
+    </div>
+
+    <!-- Schedule Post Form -->
+    <main class="container post-main">
+        <section class="card post-card">
+            <header class="post-card-header">
+                <h2>Create New Schedule</h2>
+                <p>Fill in the details below and post your route.</p>
+            </header>
+
+            <% if (typeof success !== 'undefined' && success) { %>
+                <div class="card alert-success">
+                    <p style="margin:0;">Schedule posted successfully.</p>
+                </div>
+            <% } %>
+
+            <form action="/post" method="POST" novalidate class="post-form" id="scheduleForm">
+                <div class="post-grid">
+                    <div class="form-group">
+                        <label for="from">Departure</label>
+                        <select id="from" name="from" class="form-input" required>
+                            <option value="">Select departure</option>
+                            <% (places || []).forEach(function(p){ %>
+                                <option value="<%= p %>"><%= p %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="to">Destination</label>
+                        <select id="to" name="to" class="form-input" required>
+                            <option value="">Select destination</option>
+                            <% (places || []).forEach(function(p){ %>
+                                <option value="<%= p %>"><%= p %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="route">Route</label>
+                    <input class="form-input" type="text" id="route" name="route" placeholder="Departure → Destination" readonly required>
+                </div>
+
+                <div class="post-grid">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input class="form-input" type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="departure">Departure Time</label>
+                        <input class="form-input" type="time" id="departure" name="departure" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  style="font-size:15px ;" for="price">Price</label>
+                    <input class="form-input" type="number" id="price" name="price" min="0" step="0.01" placeholder="e.g., 450.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reminder">Reminder</label>
+                    <textarea class="form-input" id="reminder" name="reminder" rows="4" placeholder="Add any notes for passengers (e.g., arrive 30 minutes early, bring ID, luggage limits)" required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" style="width:150px; height:40px;">Post</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    
+    
+    
+    
+    <div class="footer">
+        <p>
+            &copy; Developed By 
+            <a style="color:black;" href="https://portfolio-5blt.onrender.com/">Honelign</a>
+        </p>
+    </div> 
+<script src="/src/userHome.js"></script>
+<script>
+    // Keep route field in sync with from/to selects
+    (function(){
+        const fromSel = document.getElementById('from');
+        const toSel = document.getElementById('to');
+        const routeInput = document.getElementById('route');
+        const form = document.getElementById('scheduleForm');
+
+        function updateRoute(){
+            const f = fromSel.value || '';
+            const t = toSel.value || '';
+            routeInput.value = (f && t) ? `${f} → ${t}` : '';
+        }
+        fromSel?.addEventListener('change', updateRoute);
+        toSel?.addEventListener('change', updateRoute);
+
+        // Prevent same departure and destination
+        form?.addEventListener('submit', function(e){
+            if (fromSel.value && toSel.value && fromSel.value === toSel.value){
+                e.preventDefault();
+                alert('Departure and destination cannot be the same.');
+            }
+        });
+    })();
+</script>
+</body>
+</html>

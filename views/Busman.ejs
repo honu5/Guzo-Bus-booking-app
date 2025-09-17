@@ -4,27 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
-    <link rel="stylesheet" href="/src/Busman.css">
+    <link rel="stylesheet" href="/src/shared.css">
+    <link rel="stylesheet" href="/src/userHome.css">
+    <link rel="stylesheet" href="/src/main.css">
+
+
+
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+
+        .dash-item i{
+           margin-top: 70px;
+        }
+
+        .dash-item h3{
+           position: relative;
+           top:-20px;
+        }
+
+        @media (min-width: 600px) and (max-width: 1024px) {
+            .dash-item{
+                width:40vw;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+        .dash-item h3{
+           position: relative;
+           top:-40px;
+        }
+
+        .dash-item{
+                width:70vw;
+            }
+
+    }
+
+        @media (max-width: 600px) {
+       .stations{
+        margin-bottom: 5vh;
+       
+       }
+
+       .card{
+         margin-left: 2vw;
+       }
+}  
+
+    </style>
 </head>
 <body>
 
-     <header>
-        <nav  class="nav">
+    <nav  class="nav">
             <div  style="background-color: white; z-index:1000;" class="first-nav">
                 <div class="three-dash item" ><i class="fa-solid fa-bars"></i></div>
                 <div class="title item" >Guzo</div>
             </div>
+           
+            <div  style="z-index:1000;" class="search-bar item">
+                <input type="text" class="input-field"  placeholder="search by Stations." name="searchRoute">
+                <i class="fa-solid fa-search"></i>
+             </div>
 
             <div style="z-index:1000;" class="second-nav">
                     <div class="notification item"><a href="notifications"> <i class="fa-solid fa-bell notification-bar"></i></a></div>
-                    <div class="user-container item"><a href="profile"> <i class="fa-solid fa-circle-user user"></i></a>
+                    <div class="user-container item"><a href="profile"> <i class="fa-solid fa-bus user"></i></a>
                     <div class="name-container item"> <a href="profile"> <h3 class="user">Honelign<br> Yohannes</h3></a></div>
-            </div>                    
+            </div>
+                    
+                </div>
+            </div>
+   
 
         </nav>
     </header>
+
+    <div class="side-bar">
+        <div class="side-bar-container">
+            <div class="routes sid-option"><a href="home"><p>Home</p></a></div>
+             <div class="route sid-option"><a href="comments"><p>Comments</p></a></div>
+            <div class="settings sid-option"><p>Settings</p></div>
+            <div class="About sid-option"><a href="about"><p>About</p></a></div>
+            <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
+        </div>
+    </div>
+
+    <div class="big-container">
+  <div class="dashboard-container">
+    <!-- Post New Schedule -->
+    <div class="dash-item">
+      <a href="/post"><i style="color:white;" class="fa-solid fa-plus"></i></a>
+      <h3>Post New Schedule</h3>
+    </div>
+
+    <!-- My Listings -->
+    <div class="dash-item">
+      <a href="/Listing"><i style="color:white;" class="fa-solid fa-bars"></i></a>
+      <h3>Posted Bus Lists</h3>
+    </div>
+  </div>
+</div>
+
+
+<div style="top:0; margin-bottom: 0;" class="container2">
+        <div class="inner-container">
+            <div class="availables item card">
+                <h3>Available Buses</h3>
+                <p>Here are all buses <br>available for booking right now.<br>Click the button and view the lists </p>
+                <a href="availableBuses"><button class="btn-primary">View</button></a>
+            </div>
+            <div class="ticket item card">
+                <h3>Your Bus Station</h3>
+                <p>You can update your bus profile here. <br> with amenities,offers,amenities<br>and any other details</p>
+                <a href="MyBus"><button class="btn-primary">Update</button></a>
+            </div>
+            <div class="stations item card">
+                <h3>Bus Stations</h3>
+                <p>Here are all Bus station lists with <br> available buses,amenities ,ratings an</p>
+                <a href="busStations"><button class="btn-primary">View</button></a>
+            </div>
+        </div>
+    </div>
+
+
     
     
     <div class="footer">
@@ -33,6 +138,6 @@
             <a style="color:black;" href="https://portfolio-5blt.onrender.com/">Honelign</a>
         </p>
     </div> 
-
+<script src="/src/userHome.js"></script>
 </body>
 </html>

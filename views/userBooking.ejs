@@ -23,8 +23,8 @@
 
     .container {
       flex: 1;
-      margin-bottom: 14vh; /* space above footer */
-      padding: 2rem 1rem;
+      margin-bottom: 7vh; /* space above footer */
+      padding: 1rem 1rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -32,8 +32,9 @@
     }
 
     .booking-card {
-      width: 100%;
-      max-width: 900px;
+      width:85vw;
+      flex-shrink:initial;
+      padding-inline: 3vw;
       background: rgba(255, 255, 255, 0.15); /* translucent card */
       padding: 1.5rem;
       border-radius: 15px;
@@ -84,6 +85,12 @@
       left: 0;
       right: 0;
     }
+
+    @media (max-width:500px){
+      .booking-card{
+        width:75vw;
+      }
+    }
   </style>
     
 </head>
@@ -124,8 +131,7 @@
         </div>
     </div>
 
-    <div class="container">
-            <h2>Your Bookings</h2>
+    <div  style="margin-top: 10vh; " class="container">
 
             <% if (bookings.length === 0) { %>
             <p>No bookings yet.</p>

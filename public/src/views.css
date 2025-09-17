@@ -207,6 +207,10 @@ input::placeholder {
   margin-right: auto;
 }
 
+.bus-card{
+    width: 500px;
+  }
+
 .facts-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -237,4 +241,30 @@ input::placeholder {
   margin: 0;
   font-size: 1rem;
   color: #fff;
+}
+
+@media(max-width:550px){
+  .name-container{
+    display:none;
+  }
+
+  .topic{
+    font-size:1.25em;
+    font-weight: bolder;
+  }
+}
+
+
+@media (max-width:600px){
+  .avi-container{
+    flex-direction: column;
+    padding-inline: 35px;
+    place-content: center;
+
+
+  }
+
+  .bus-card{
+    width: 85vh;
+  }
 }
