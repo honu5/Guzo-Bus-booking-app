@@ -118,4 +118,12 @@ export const availableBuses={
 
 }
 
+// Mock comments for the comments page
+export const comments = [
+  { id: 1, username: "Marta", text: "Great service and on-time departure!  Great service and on-time departure!  Great service and on-time departure!  Great service and on-time departure!  Great service and on-time departure!  Great service and on-time departure!  Great service and on-time departure!" },
+  { id: 2, username: "Samuel", text: "Clean buses and friendly staff." },
+  { id: 3, username: "Abel", text: "Please add more evening routes to Bahir Dar." },
+  { id: 4, username: "Hanna", text: "Ticket price is fair, would recommend." }
+];
+
 

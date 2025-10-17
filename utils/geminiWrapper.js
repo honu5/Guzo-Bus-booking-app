@@ -1,6 +1,8 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config();
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -24,7 +26,7 @@ export function getLanguage() {
 }
 
 
-const genAI = new GoogleGenerativeAI("AIzaSyDV34GiCLEsh5kJwii_CpWZcGxjMxxIFG8");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API);
 
 export async function getGeminiResponse(userMessage, conversationHistory = []) {
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });

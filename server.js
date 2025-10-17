@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import {Pool} from "pg"
 import bcrypt from "bcrypt";
-import { userProfile,routes,busStations,bookings } from "./Mock.js";
+import { userProfile,routes,busStations,bookings, comments } from "./Mock.js";
 import { marked } from "marked";
 import { getGeminiResponse, setLanguage, getLanguage } from "./utils/geminiWrapper.js";
 import session from 'express-session';
@@ -55,12 +55,35 @@ function initSessionData(req) {
 app.set("views" , path.join(direName,"./views"))
 app.set("view engine" , "ejs");
 
+// In-memory schedules (mock). In production use DB.
+const schedules = [];
+
+function normalizeSchedule(input){
+    const id = Date.now();
+    const seatsTotal = 40; // default capacity
+    const seatsLeft = typeof input.seatsLeft === 'number' ? input.seatsLeft : seatsTotal; 
+        return {
+        id,
+        route: input.route,
+        date: input.date,
+        departure: input.departure,
+        price: Number(input.price),
+        reminder: input.reminder,
+        seatsLeft,
+        seatsTotal,
+            status: seatsLeft <= 0 ? 'closed' : 'active',
+            closedReason: seatsLeft <= 0 ? 'auto' : undefined,
+        createdAt: new Date()
+    };
+}
+
 app.get("/",(req,res)=>{
-    if (user=="user"){
-        res.render("home")
+    if (user==="user"){
+        const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
+        res.render("home", { places });
     }
     else{
-    res.render("Busman");
+        res.render("Busman");
     }
 })
 
@@ -157,11 +180,13 @@ app.get("/login",(req,res)=>{
 })
 
 app.get("/home",(req,res)=>{
-    res.render("home")
+    const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
+    res.render("home", { places })
 })
 
 app.get("/user",(req,res)=>{
-    res.render("home")
+    const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
+    res.render("home", { places })
 })
 
 app.get("/notifications",(req,res)=>{
@@ -197,11 +222,23 @@ app.get("/userBooking",(req,res)=>{
 })
 
 app.get("/comments",(req,res)=>{
-    res.render("comment");
+    res.render("comment", { comments });
 })
 
 app.get("/Listing",(req,res)=>{
-    res.render("Listing");
+        // Auto-close any active schedules that ran out of seats
+        for (const s of schedules) {
+            if (s.status === 'active' && s.seatsLeft <= 0) {
+                s.status = 'closed';
+                s.closedReason = 'auto';
+            }
+        }
+        // Group schedules into active and past (closed or old date)
+        const now = new Date();
+        const today = new Date(now.toDateString());
+        const active = schedules.filter(s => s.status === 'active' && new Date(s.date) >= today);
+        const past = schedules.filter(s => s.status !== 'active' || new Date(s.date) < today);
+        res.render("Listing", { active, past });
 })
 
 app.get("/MyBus",(req,res)=>{
@@ -216,17 +253,46 @@ app.get("/post",(req,res)=>{
 
 // Handle schedule post submissions
 app.post("/post", (req, res) => {
-    const { route, from, to, date, departure, price, reminder } = req.body;
-    const computedRoute = route && route.trim() ? route.trim() : (from && to ? `${from} → ${to}` : "");
-    // TODO: Save to DB. For now, just render success.
-    // Basic presence check (server-side) – optional
-    if (!computedRoute || !date || !departure || !price || !reminder) {
-        const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
-        return res.status(400).render("post", { success: false, error: "Please fill in all fields.", places });
+        const { route, from, to, date, departure, price, reminder } = req.body;
+        const computedRoute = route && route.trim() ? route.trim() : (from && to ? `${from} → ${to}` : "");
+        if (!computedRoute || !date || !departure || !price || !reminder) {
+                const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
+                return res.status(400).render("post", { success: false, error: "Please fill in all fields.", places });
+        }
+        const sched = normalizeSchedule({ route: computedRoute, date, departure, price, reminder });
+        schedules.unshift(sched);
+        // Redirect to listings to show the new bus
+        res.redirect("/Listing");
+});
+
+// Close an active schedule by id
+app.post('/Listing/:id/close', (req, res) => {
+    const id = Number(req.params.id);
+    const idx = schedules.findIndex(s => s.id === id);
+    if (idx !== -1) {
+        schedules[idx].status = 'closed';
+        schedules[idx].closedReason = 'manual';
     }
-    // In a real implementation, insert into a schedules table here.
-    const places = Array.from(new Set(routes.flatMap(r => [r.from, r.to]))).sort();
-    res.render("post", { success: true, places });
+    res.redirect('/Listing');
+});
+
+// Delete a past/closed schedule by id
+app.post('/Listing/:id/delete', (req, res) => {
+    const id = Number(req.params.id);
+    const idx = schedules.findIndex(s => s.id === id);
+    if (idx !== -1) schedules.splice(idx, 1);
+    res.redirect('/Listing');
+});
+
+// Re-open a manually closed schedule (only if seats are available)
+app.post('/Listing/:id/reopen', (req, res) => {
+    const id = Number(req.params.id);
+    const s = schedules.find(s => s.id === id);
+    if (s && s.status === 'closed' && s.closedReason === 'manual' && s.seatsLeft > 0) {
+        s.status = 'active';
+        s.closedReason = undefined;
+    }
+    res.redirect('/Listing');
 });
 
 

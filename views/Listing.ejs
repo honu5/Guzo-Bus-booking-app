@@ -18,6 +18,25 @@
                 bottom:0;
             }
         }
+
+        /* Listings layout */
+        .listings-container { max-width: 1100px; margin: 1.5rem auto 7rem; padding: 0 1rem; }
+        .section-header { display:flex; align-items:center; justify-content:space-between; margin: .5rem 0 1rem; }
+        .section-header h3 { margin:0; }
+        .grid { display:grid; grid-template-columns: 1fr; gap: 1rem; }
+        @media (min-width: 700px){ .grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1100px){ .grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+        .listing-card { display:flex; flex-direction:column; gap:.5rem; }
+        .row { display:flex; justify-content:space-between; align-items:center; gap: .5rem; }
+        .muted { color:#f1f1f1; opacity: .9; }
+        .badge { padding: 2px 8px; border-radius: 10px; font-size: .8rem; }
+        .badge.active { background: #c8e6c9; color:#1b5e20; }
+        .badge.closed { background: #ffcdd2; color:#b71c1c; }
+        .seats { font-weight: 600; }
+        .actions { display:flex; gap:.5rem; justify-content:flex-end; }
+        .actions form { display:inline; }
+        .tight { margin: 0; }
     </style>
 
 
@@ -59,7 +78,86 @@
             <div class="Logout sid-option"><a href="logout"><p>Logout</p></a></div>
         </div>
     </div>
+    <main class="container listings-container">
+        <!-- Active listings -->
+        <section>
+            <div class="section-header">
+                <h3>Active</h3>
+                <span class="badge active"><%= (active || []).length %> active</span>
+            </div>
+            <div class="grid">
+                <% (active || []).forEach(function(s){ %>
+                    <article class="card listing-card">
+                        <div class="row">
+                            <h4 class="tight"><%= s.route %></h4>
+                            <span class="badge active">Active</span>
+                        </div>
+                        <div class="row muted">
+                            <span>Date: <%= s.date %></span>
+                            <span>Departure: <%= s.departure %></span>
+                        </div>
+                        <div class="row">
+                            <span class="seats">Seats left: <%= s.seatsLeft %> / <%= s.seatsTotal %></span>
+                            <span>Price: ETB <%= s.price %></span>
+                        </div>
+                        <p class="muted tight"><%= s.reminder %></p>
+                        <div class="actions">
+                            <% if (s.seatsLeft <= 0) { %>
+                                <span class="badge closed">Auto-closed</span>
+                            <% } else { %>
+                                <form action="/Listing/<%= s.id %>/close" method="POST">
+                                    <button class="btn-primary" type="submit">Close</button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </article>
+                <% }) %>
+                <% if (!active || active.length === 0) { %>
+                    <article class="card"><p class="tight">No active listings.</p></article>
+                <% } %>
+            </div>
+        </section>
 
+        <!-- Past listings -->
+        <section style="margin-top:2rem;">
+            <div class="section-header">
+                <h3>Past</h3>
+                <span class="badge closed"><%= (past || []).length %> past</span>
+            </div>
+            <div class="grid">
+                <% (past || []).forEach(function(s){ %>
+                    <article class="card listing-card">
+                        <div class="row">
+                            <h4 class="tight"><%= s.route %></h4>
+                            <span class="badge closed"><%= s.closedReason === 'auto' ? 'Auto-closed' : 'Closed' %></span>
+                        </div>
+                        <div class="row muted">
+                            <span>Date: <%= s.date %></span>
+                            <span>Departure: <%= s.departure %></span>
+                        </div>
+                        <div class="row">
+                            <span class="seats">Seats left: <%= s.seatsLeft %> / <%= s.seatsTotal %></span>
+                            <span>Price: ETB <%= s.price %></span>
+                        </div>
+                        <p class="muted tight"><%= s.reminder %></p>
+                        <div class="actions">
+                            <% if (s.closedReason === 'manual' && s.seatsLeft > 0) { %>
+                                <form action="/Listing/<%= s.id %>/reopen" method="POST">
+                                    <button class="btn-primary" type="submit">Re-open</button>
+                                </form>
+                            <% } %>
+                            <form action="/Listing/<%= s.id %>/delete" method="POST">
+                                <button class="btn-primary" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </article>
+                <% }) %>
+                <% if (!past || past.length === 0) { %>
+                    <article class="card"><p class="tight">No past listings.</p></article>
+                <% } %>
+            </div>
+        </section>
+    </main>
     
     
     
